@@ -1,0 +1,47 @@
+<Solution>
+  <PropertyGroup Name="star" Version="2.3.2.3" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Image Name="HelloWorld.png" />
+        <Folder Name="SelectStarScene">
+          <Project Name="SelectStarScene.csd" Type="Scene" />
+          <Image Name="fortune_aquarius_img.png" />
+          <Image Name="fortune_aries_img.png" />
+          <Image Name="fortune_cancer_img.png" />
+          <Image Name="fortune_capricornus_img.png" />
+          <Image Name="fortune_gemini_omg.png" />
+          <Image Name="fortune_leo_img.png" />
+          <Image Name="fortune_libra_img.png" />
+          <Image Name="fortune_pisces_img.png" />
+          <Image Name="fortune_sagittarius_img.png" />
+          <Image Name="fortune_scorpio_img.png" />
+          <Image Name="fortune_taurus_img.png" />
+          <Image Name="fortune_virgo_img.png" />
+          <Image Name="fortune_background_img.png" />
+        </Folder>
+        <Folder Name="FortuneScene">
+          <Project Name="FortuneScene.csd" Type="Scene" />
+          <Image Name="FirtuneSccene.png" />
+          <Image Name="fortune_content_Bg.png" />
+          <Image Name="PopLayer.png" />
+        </Folder>
+        <Folder Name="icon">
+          <Image Name="1.png" />
+          <Image Name="2.png" />
+          <Image Name="3.png" />
+          <Image Name="4.png" />
+          <Image Name="5.png" />
+          <Image Name="6.png" />
+          <Image Name="7.png" />
+          <Image Name="8.png" />
+        </Folder>
+        <Folder Name="FortuneSet">
+          <Project Name="FortuneSetScene.csd" Type="Scene" />
+        </Folder>
+        <Image Name="StartPage.png" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

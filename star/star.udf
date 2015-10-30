@@ -1,0 +1,43 @@
+<UserData Version="2.3.2.3">
+  <Properties>
+    <Item Key="CocosRecentOperation">
+      <Value ctype="CocosRecentOperation">
+        <LastPublishType Value="Resource" />
+        <IsLastPublish Value="True" />
+        <LastRunType Value="Windows" />
+      </Value>
+    </Item>
+    <Item Key="PackageParamsKey">
+      <Value ctype="PackageParams">
+        <LuaIsEncrypt Value="False" />
+        <LuaEncryptKey Value="" />
+        <LuaEncryptSign Value="" />
+        <Android_PackageName Value="org.cocos.star" />
+        <AndroidkeyStore Value="" />
+        <AndroidVersion Value="android-20" />
+        <iOS_Target Value="star-mobile" />
+        <iOS_BundleID Value="" />
+        <Platform Value="None" />
+        <RunPlatform Value="Windows" />
+        <FrameworkVersion Value="cocos2d-x-3.8.1" />
+        <IsDebugKeystore Value="True" />
+        <KeystorePassword Value="" />
+        <KeystoreAliasName Value="" />
+        <KeystoreAliasPassword Value="" />
+        <EnableSourceMap Value="False" />
+        <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="MainScene.csd" />
+          <FilePathData Path="FortuneSet/FortuneSetScene.csd" />
+          <FilePathData Path="FortuneScene/FortuneScene.csd" />
+          <FilePathData Path="SelectStarScene/SelectStarScene.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="FortuneScene/FortuneScene.csd" />
+      </Value>
+    </Item>
+  </Properties>
+</UserData>
