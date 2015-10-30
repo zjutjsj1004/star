@@ -1,5 +1,10 @@
 #include "AppDelegate.h"
 #include "StartScene.h"
+
+#ifdef _WINDOWS_
+#include "starNetwork.h"
+#endif
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -42,6 +47,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = CStar::createScene();
+
+#ifdef _WINDOWS_
+    // 网络通信初始化
+    bool bInitNetwork = CStarNetwork::GetInstance()->initNetwork();
+    if (!bInitNetwork)
+    {
+        CCLOG("init network error");
+    }
+#endif
 
     // run
     director->runWithScene(scene);

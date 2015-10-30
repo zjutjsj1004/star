@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include "common.h"
-//#include "zmq.h"
+
+#ifdef _WINDOWS
+#include "zmq.h"
 #include "starNetwork.h"
 #include "starPB.h"
+#endif
+
 
 CStarNetwork* CStarNetwork::sm_pInstance = NULL;
 void* CStarNetwork::m_pCtx = NULL;
@@ -26,7 +30,8 @@ void CStarNetwork::resetMember()
 
 bool CStarNetwork::initNetwork()
 {
-#if 0
+#ifdef _WINDOWS
+
 	//使用tcp协议进行通信，需要连接的目标机器IP地址为192.168.1.2
 	//通信使用的网络端口 为7766 
 	const char * pAddr = "tcp://127.0.0.1:11214";
@@ -64,7 +69,7 @@ bool CStarNetwork::initNetwork()
 
 bool CStarNetwork::uninitNetwork()
 {
-#if 0
+#if _WINDOWS
 	if (NULL != m_pCtx)
 	{
 		zmq_ctx_destroy(m_pCtx);
@@ -81,6 +86,7 @@ bool CStarNetwork::uninitNetwork()
 
 int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 {
+#if _WINDOWS
 	LogonReqMessage logonReq;
 	logonReq.set_acctid(20);
 	logonReq.set_passwd("Hello World");
@@ -91,12 +97,10 @@ int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 	char* bufTmp = new char[length];
 	logonReq.SerializeToArray(bufTmp, length);
 	int nSizeof = sizeof(bufTmp);
-#if 0
 	if (zmq_send(m_pSocket, bufTmp, length, 0) < 0)
 	{
 		return ERROR_COMMMON_FAILED;
 	}
-#endif
 	
 	int nLen = strlen(bufTmp);
 	printf("%d\n", nLen);
@@ -106,5 +110,6 @@ int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 	std::string strTmp = logonReqTmp.passwd();
 	printf("received message : %s\n", logonReqTmp.passwd().c_str());
 	delete[]bufTmp;
+#endif
 	return ERROR_COMMON_SUCCESS;
 }

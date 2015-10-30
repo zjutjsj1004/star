@@ -263,6 +263,13 @@ void CFortune::fortuneBottonBtnClick(Ref *pRef)
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		shareButtonClick();
 		#endif
+
+#ifdef _WINDOWS
+        /*≤‚ ‘Õ¯¬Á∑¢ÀÕ*/
+        char szBuf[1024] = { 0 };
+        sprintf(szBuf, "%s", "hello world");
+        CStarNetwork::sendData(0, szBuf, sizeof(szBuf));
+#endif
 		break;
 	}
 	case STAR_FORTUNE_BOTTON_DISCOVERY:

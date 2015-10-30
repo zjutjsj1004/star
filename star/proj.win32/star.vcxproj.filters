@@ -13,6 +13,12 @@
     <Filter Include="src\common">
       <UniqueIdentifier>{de82fdb0-f0bd-43e0-a590-cf0c359648c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\common\network">
+      <UniqueIdentifier>{c9ab973e-5394-41ec-b346-02fc688f47b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common\protobuf">
+      <UniqueIdentifier>{df0a79e1-c1e4-4b1f-aede-9430b4c0ed00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="..\..\common\StarRapidJson.cpp">
       <Filter>src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\protobuf\starPB.cpp">
+      <Filter>src\common\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\starNetwork.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,10 +86,27 @@
     <ClInclude Include="..\..\common\StarRapidJson.h">
       <Filter>src\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\common\network\include\zmq.h">
+      <Filter>src\common\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\network\include\zmq_utils.h">
+      <Filter>src\common\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\protobuf\starPB.h">
+      <Filter>src\common\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\starNetwork.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\common\protobuf\star.proto">
+      <Filter>src\common\protobuf</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -160,14 +160,14 @@ copy $(SolutionDir)..\..\common\sqlite\*.dll  $(TargetDir)</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\common\protobuf\star.pb.cc" />
+    <ClCompile Include="..\..\..\common\protobuf\starPB.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\common.h" />
     <ClInclude Include="..\..\..\common\network\include\zmq.h" />
-    <ClInclude Include="..\..\..\common\protobuf\star.pb.h" />
+    <ClInclude Include="..\..\..\common\protobuf\starPB.h" />
     <ClInclude Include="..\..\..\common\sqlite\sqlite3.h" />
     <ClInclude Include="sqlite_interface.h" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "common.h"
 #include "zmq.h"
-#include "star.pb.h"
+#include "starPB.h"
 #include "sqlite_interface.h"
 
 int main(int argc, char * argv[])

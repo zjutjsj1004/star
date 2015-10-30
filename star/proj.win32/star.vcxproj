@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\network\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -84,9 +84,9 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END);libsodium.lib;libzmq.lib;libprotobuf-lite.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END);$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\tools\simulator\libsimulator\lib\protobuf-lite</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END);$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\tools\simulator\libsimulator\lib\protobuf-lite;$(SolutionDir)..\..\common\network\lib;$(SolutionDir)..\..\common\protobuf</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -113,7 +113,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\network\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -145,29 +145,38 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\common\PopupLayer.cpp" />
+    <ClCompile Include="..\..\common\protobuf\starPB.cpp" />
     <ClCompile Include="..\..\common\StarRapidJson.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\FortuneScene.cpp" />
     <ClCompile Include="..\Classes\FortuneSetScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\SelectStarScene.cpp" />
+    <ClCompile Include="..\Classes\starNetwork.cpp" />
     <ClCompile Include="..\Classes\StartScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\common\common.h" />
+    <ClInclude Include="..\..\common\network\include\zmq.h" />
+    <ClInclude Include="..\..\common\network\include\zmq_utils.h" />
     <ClInclude Include="..\..\common\PopupLayer.h" />
+    <ClInclude Include="..\..\common\protobuf\starPB.h" />
     <ClInclude Include="..\..\common\StarRapidJson.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\FortuneScene.h" />
     <ClInclude Include="..\Classes\FortuneSetScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\SelectStarScene.h" />
+    <ClInclude Include="..\Classes\starNetwork.h" />
     <ClInclude Include="..\Classes\StartScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\common\protobuf\star.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
