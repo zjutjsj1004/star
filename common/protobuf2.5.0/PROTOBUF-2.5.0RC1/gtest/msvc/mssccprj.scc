@@ -1,0 +1,41 @@
+SCC = This is a Source Code Control file
+
+[gtest-md.sln]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest-md.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest.sln]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_main-md.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_main.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_prod_test-md.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_prod_test.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_unittest-md.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA
+
+[gtest_unittest.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/gtest/msvc", XXPHAAAA

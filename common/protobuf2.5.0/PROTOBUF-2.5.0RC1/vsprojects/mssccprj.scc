@@ -1,0 +1,33 @@
+SCC = This is a Source Code Control file
+
+[libprotobuf-lite.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[libprotobuf.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[libprotoc.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[lite-test.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[protobuf.sln]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[protoc.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[test_plugin.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA
+
+[tests.vcproj]
+SCC_Aux_Path = "\\192.168.1.164\lib$\"
+SCC_Project_Name = "$/Library/protobuf2.5.0/PROTOBUF-2.5.0RC1/vsprojects", HUQHAAAA

@@ -1,0 +1,1 @@
+-I=D:\CocosStudio\pro\common\protobuf  --cpp_out=D:\CocosStudio\pro\common\protobuf D:\CocosStudio\pro\common\protobuf\star.proto
