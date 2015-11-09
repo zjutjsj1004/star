@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,7 +126,7 @@ copy $(SolutionDir)..\..\common\sqlite\*.dll  $(TargetDir)</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

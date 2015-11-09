@@ -38,8 +38,8 @@ int main(int argc, char * argv[])
 		zmq_ctx_destroy(pCtx);
 		return 0;
 	}
-	//绑定地址 tcp://*:7766 
-	//也就是使用tcp协议进行通信，使用网络端口 7766
+	//绑定地址 tcp://*:11214 
+	//也就是使用tcp协议进行通信，使用网络端口 11214
 	if (zmq_bind(pSock, pAddr) < 0)
 	{
 		zmq_close(pSock);

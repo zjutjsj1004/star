@@ -45,18 +45,18 @@ void shareCallback(int platform, int stCode, string& errorMsg)
 {
 	if (stCode == 100)
 	{
-		CCLog("#### HelloWorld 开始分享");
+		CCLOG("#### HelloWorld 开始分享");
 	}
 	else if (stCode == 200)
 	{
-		CCLog("#### HelloWorld 分享成功");
+        CCLOG("#### HelloWorld 分享成功");
 	}
 	else
 	{
-		CCLog("#### HelloWorld 分享出错");
+        CCLOG("#### HelloWorld 分享出错");
 	}
 
-	CCLog("platform num is : %d.", platform);
+    CCLOG("platform num is : %d.", platform);
 }
 #endif
 
@@ -260,16 +260,14 @@ void CFortune::fortuneBottonBtnClick(Ref *pRef)
 	}
 	case STAR_FORTUNE_BOTTON_SHARE:
 	{
+        /*测试网络发送*/
+        char szBuf[1024] = { 0 };
+        CCLOG(">>>>>>>>>>>>>>CStarNetwork::sendData in FortuneScene.cpp<<<<<<<<<<<<");
+        sprintf(szBuf, "%s", "hello world");
+        CStarNetwork::sendData(0, szBuf, sizeof(szBuf));
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		shareButtonClick();
 		#endif
-
-#ifdef _WINDOWS
-        /*测试网络发送*/
-        char szBuf[1024] = { 0 };
-        sprintf(szBuf, "%s", "hello world");
-        CStarNetwork::sendData(0, szBuf, sizeof(szBuf));
-#endif
 		break;
 	}
 	case STAR_FORTUNE_BOTTON_DISCOVERY:

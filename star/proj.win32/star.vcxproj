@@ -71,8 +71,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\network\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\protobuf-lite</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SRAT_WINDOWS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -113,8 +113,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\protobuf2.5.0\PROTOBUF-2.5.0RC1\src;$(SolutionDir)..\..\common\network\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\cocos\audio\include;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\external\chipmunk\include\chipmunk;$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\protobuf\protobuf-lite;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\protobuf-lite</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_SRAT_WINDOWS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -145,6 +145,19 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\common\PopupLayer.cpp" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\extension_set.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\generated_message_util.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\io\coded_stream.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\io\zero_copy_stream.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\message_lite.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\repeated_field.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_gcc.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\common.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\once.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\stringprintf.cc" />
+    <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\wire_format_lite.cc" />
     <ClCompile Include="..\..\common\protobuf\starPB.cpp" />
     <ClCompile Include="..\..\common\StarRapidJson.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
@@ -161,6 +174,34 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\..\common\network\include\zmq.h" />
     <ClInclude Include="..\..\common\network\include\zmq_utils.h" />
     <ClInclude Include="..\..\common\PopupLayer.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\config.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\extension_set.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\generated_message_util.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\io\coded_stream.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\io\coded_stream_inl.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\io\zero_copy_stream.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\io\zero_copy_stream_impl.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\io\zero_copy_stream_impl_lite.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\message_lite.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\repeated_field.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_arm_gcc.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_atomicword_compat.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_generic_gcc.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_macosx.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_gcc.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\atomicops_internals_x86_msvc.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\common.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\hash.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\map-util.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\once.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\platform_macros.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\stl_util.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\stringprintf.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\template_util.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\type_traits.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\wire_format_lite.h" />
+    <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\wire_format_lite_inl.h" />
     <ClInclude Include="..\..\common\protobuf\starPB.h" />
     <ClInclude Include="..\..\common\StarRapidJson.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />

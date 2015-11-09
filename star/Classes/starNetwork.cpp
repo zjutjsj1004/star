@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "common.h"
+#include "starNetwork.h"
 
-#ifdef _WINDOWS
-#include "zmq.h"
+//#include "zmq.h"
 #include "starNetwork.h"
 #include "starPB.h"
-#endif
-
+#include "cocos2d.h"
+USING_NS_CC;
 
 CStarNetwork* CStarNetwork::sm_pInstance = NULL;
 void* CStarNetwork::m_pCtx = NULL;
@@ -30,63 +30,60 @@ void CStarNetwork::resetMember()
 
 bool CStarNetwork::initNetwork()
 {
-#ifdef _WINDOWS
 
 	//使用tcp协议进行通信，需要连接的目标机器IP地址为192.168.1.2
 	//通信使用的网络端口 为7766 
-	const char * pAddr = "tcp://127.0.0.1:11214";
+    //const char * pAddr = "tcp://127.0.0.1:11214";
+    const char * pAddr = "192.168.9.165:11214";
 
 	//创建context 
-	if ((m_pCtx = zmq_ctx_new()) == NULL)
+	//if ((m_pCtx = zmq_ctx_new()) == NULL)
 	{
-		return false;
+	//	return false;
 	}
 	//创建socket 
-	if ((m_pSocket = zmq_socket(m_pCtx, ZMQ_DEALER)) == NULL)
+	//if ((m_pSocket = zmq_socket(m_pCtx, ZMQ_DEALER)) == NULL)
 	{
-		zmq_ctx_destroy(m_pCtx);
-		return false;
+	//	zmq_ctx_destroy(m_pCtx);
+	//	return false;
 	}
 	int iSndTimeout = 5000;// millsecond
 						   //设置接收超时 
-	if (zmq_setsockopt(m_pSocket, ZMQ_RCVTIMEO, &iSndTimeout, sizeof(iSndTimeout)) < 0)
+	//if (zmq_setsockopt(m_pSocket, ZMQ_RCVTIMEO, &iSndTimeout, sizeof(iSndTimeout)) < 0)
 	{
-		zmq_close(m_pSocket);
-		zmq_ctx_destroy(m_pCtx);
-		return false;
+	//	zmq_close(m_pSocket);
+	//	zmq_ctx_destroy(m_pCtx);
+	//	return false;
 	}
 	//连接目标IP192.168.1.2，端口7766 
-	if (zmq_connect(m_pSocket, pAddr) < 0)
+	//if (zmq_connect(m_pSocket, pAddr) < 0)
 	{
-		zmq_close(m_pSocket);
-		zmq_ctx_destroy(m_pCtx);
-		return false;
+	//	zmq_close(m_pSocket);
+	//	zmq_ctx_destroy(m_pCtx);
+	//	return false;
 	}
-#endif
 	
 	return true;
 }
 
 bool CStarNetwork::uninitNetwork()
 {
-#if _WINDOWS
 	if (NULL != m_pCtx)
 	{
-		zmq_ctx_destroy(m_pCtx);
+	//	zmq_ctx_destroy(m_pCtx);
 	}
 
 	if (NULL != m_pSocket)
 	{
-		zmq_close(m_pSocket);
+	//	zmq_close(m_pSocket);
 	}
-#endif
 	
 	return true;
 }
 
 int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 {
-#if _WINDOWS
+
 	LogonReqMessage logonReq;
 	logonReq.set_acctid(20);
 	logonReq.set_passwd("Hello World");
@@ -97,9 +94,9 @@ int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 	char* bufTmp = new char[length];
 	logonReq.SerializeToArray(bufTmp, length);
 	int nSizeof = sizeof(bufTmp);
-	if (zmq_send(m_pSocket, bufTmp, length, 0) < 0)
+	//if (zmq_send(m_pSocket, bufTmp, length, 0) < 0)
 	{
-		return ERROR_COMMMON_FAILED;
+//		return ERROR_COMMMON_FAILED;
 	}
 	
 	int nLen = strlen(bufTmp);
@@ -108,8 +105,8 @@ int CStarNetwork::sendData(int nMessType, const void *buf, size_t len)
 	LogonReqMessage logonReqTmp;
 	logonReqTmp.ParseFromArray(bufTmp, nLen);
 	std::string strTmp = logonReqTmp.passwd();
+    CCLOG("%s", strTmp.c_str());
 	printf("received message : %s\n", logonReqTmp.passwd().c_str());
 	delete[]bufTmp;
-#endif
 	return ERROR_COMMON_SUCCESS;
 }
