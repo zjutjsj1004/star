@@ -66,7 +66,7 @@ public:
 		struct tm * now;
 		//获得本地时间
 		now = localtime(&tt);
-		//CCLog("%d/%d/%d %d:%d:%d", now->tm_year + 1900, now->tm_mon + 1, now->tm_mday, now->tm_hour, now->tm_min, now->tm_sec);
+		//CCLOG("%d/%d/%d %d:%d:%d", now->tm_year + 1900, now->tm_mon + 1, now->tm_mday, now->tm_hour, now->tm_min, now->tm_sec);
 		char szTime[STAR_COMMON_FINENAME_MAX_LEN] = { 0 };
 		sprintf(szTime, "%d%d%d", now->tm_year + 1900, now->tm_mon + 1, now->tm_mday);
 		return atoi(szTime);
