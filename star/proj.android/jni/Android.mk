@@ -1,5 +1,8 @@
 LOCAL_PATH := $(call my-dir)
 
+define _STAR_ZEROMQ_
+endef
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := cocos2dcpp_shared
