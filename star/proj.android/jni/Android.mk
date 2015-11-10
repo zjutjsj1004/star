@@ -4,6 +4,12 @@ define _STAR_ZEROMQ_
 endef
 
 include $(CLEAR_VARS)
+LOCAL_MODULE := eventcore
+LOCAL_SHARED_LIBRARIES := libeventcore
+LOCAL_SRC_FILES := libeventcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
 
 LOCAL_MODULE := cocos2dcpp_shared
 
@@ -40,6 +46,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
   $(FILE_INCLUDES) \
   $(LOCAL_PATH)/../../../common \
   $(LOCAL_PATH)/../../../common/protobuf \
+  $(LOCAL_PATH)/../../../common/protobuf-lite \
   $(LOCAL_PATH)/../../../common/protobuf-lite 
 
 
@@ -48,6 +55,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 
 
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
+LOCAL_SHARED_LIBRARIES := libeventcore
 
 # _COCOS_LIB_ANDROID_BEGIN
 # _COCOS_LIB_ANDROID_END

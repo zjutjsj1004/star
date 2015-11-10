@@ -11,6 +11,9 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "event2/event.h"
+
+
 CStarNetwork* CStarNetwork::sm_pInstance = NULL;
 void* CStarNetwork::m_pCtx = NULL;
 void* CStarNetwork::m_pSocket = NULL;
@@ -18,6 +21,8 @@ void* CStarNetwork::m_pSocket = NULL;
 CStarNetwork::CStarNetwork()
 {
 	resetMember();
+    struct event_base *base = NULL;
+    event_reinit(base);
 }
 
 CStarNetwork::~CStarNetwork()
