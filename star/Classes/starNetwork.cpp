@@ -21,7 +21,7 @@ void* CStarNetwork::m_pSocket = NULL;
 CStarNetwork::CStarNetwork()
 {
 	resetMember();
-    struct event_base *base = NULL;
+    struct event_base *base = event_base_new();
     event_reinit(base);
 }
 

@@ -96,6 +96,9 @@
     <ClCompile Include="..\..\common\protobuf-lite\google\protobuf\stubs\stringprintf.cc">
       <Filter>src\common\protobuf-lite</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\starLibEvent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
