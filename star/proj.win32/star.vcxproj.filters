@@ -22,6 +22,9 @@
     <Filter Include="src\common\protobuf-lite">
       <UniqueIdentifier>{d8d112be-52b4-4215-bcf5-d6de89260954}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\common\libevent">
+      <UniqueIdentifier>{aabb7ae8-8e9f-48fa-a98e-18fec6c7b231}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
