@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 #include "event2/event.h"
 #include "event2/util.h"
@@ -11,6 +12,9 @@
 #endif
 
 #include "starLibEvent.h"
+#include "starPB.h"
+#include "cocos2d.h"
+USING_NS_CC;
 
 
 
@@ -25,29 +29,33 @@ struct echo_context {
 
 void write_cb(evutil_socket_t sock, short flags, void * args)
 {
+    CCLOG("start write_cb");
+
     struct echo_context *ec = (struct echo_context *)args;
 
     int ret = send(sock, ec->echo_contents, ec->echo_contents_len, 0);
-    printf("connected, write to echo server: %d\n", ret);
+    CCLOG("connected, write to echo server: %d\n", ret);
     event_add(ec->event_read, 0);
 }
 
 void read_cb(evutil_socket_t sock, short flags, void * args)
 {
+    CCLOG("start read_cb");
+
     struct echo_context *ec = (struct echo_context *)args;
     char buf[128];
     int ret = recv(sock, buf, 128, 0);
 
-    printf("read_cb, read %d bytes\n", ret);
+    CCLOG("read_cb, read %d bytes\n", ret);
     if (ret > 0)
     {
         ec->recved += ret;
         buf[ret] = 0;
-        printf("recv:%s\n", buf);
+        CCLOG("recv:%s\n", buf);
     }
     else if (ret == 0)
     {
-        printf("read_cb connection closed\n");
+        CCLOG("read_cb connection closed\n");
         event_base_loopexit(ec->base, NULL);
         return;
     }
@@ -87,14 +95,11 @@ evutil_socket_t CStarLibeventNetwork::m_pSocket = 0;
 
 void CStarLibeventNetwork::echo_client(struct event_base *base)
 {
+    CCLOG("start CStarLibeventNetwork::echo_client(m_pSocket:%d)", m_pSocket);
     if (m_pSocket <=0)
     {
         m_pSocket = make_tcp_socket();
         struct sockaddr_in serverAddr;
-        struct event * ev_write = 0;
-        struct event * ev_read = 0;
-        struct timeval tv = { 10, 0 };
-        struct echo_context *ec = (struct echo_context*)calloc(1, sizeof(struct echo_context));
 
         serverAddr.sin_family = AF_INET;
         serverAddr.sin_port = htons(STAR_NETWORK_ECHO_PORT);
@@ -112,17 +117,50 @@ void CStarLibeventNetwork::echo_client(struct event_base *base)
 #else 
             int nErr = ERROR_COMMMON_FAILED;
 #endif
-            printf("connect err = %d", nErr);
+            CCLOG("connect err = %d", nErr);
             return;
         }
     }
     
     
 
-    send(m_pSocket, "helloworld!", 11, 0);
+    LogonReqMessage logonReq;
+    logonReq.set_acctid(20);
+    logonReq.set_passwd("Hello World");
+    //提前获取对象序列化所占用的空间并进行一次性分配，从而避免多次分配
+    //而造成的性能开销。通过该种方式，还可以将序列化后的数据进行加密。
+    //之后再进行持久化，或是发送到远端。
+    int length = logonReq.ByteSize();
+    char* bufTmp = new char[length];
+    logonReq.SerializeToArray(bufTmp, length);
+    int nSizeof = sizeof(bufTmp);
+    if (send(m_pSocket, bufTmp, length, 0) < 0)
+    {
+        CCLOG("send error in echo_client");
+        return;
+    }
+
 #if 0
-    ev_write = event_new(base, sock, EV_WRITE, write_cb, (void*)ec);
-    ev_read = event_new(base, sock, EV_READ, read_cb, (void*)ec);
+    /* 反序列化 */
+    int nLen = strlen(bufTmp);
+    printf("%d\n", nLen);
+
+    LogonReqMessage logonReqTmp;
+    logonReqTmp.ParseFromArray(bufTmp, nLen);
+    std::string strTmp = logonReqTmp.passwd();
+    CCLOG("%s", strTmp.c_str());
+    printf("received message : %s\n", logonReqTmp.passwd().c_str());
+#endif
+
+       delete[]bufTmp;
+
+    struct event * ev_write = NULL;
+    struct event * ev_read = NULL;
+    struct timeval tv = { 10, 0 };
+    struct echo_context *ec = (struct echo_context*)calloc(1, sizeof(struct echo_context));
+
+    ev_write = event_new(base, m_pSocket, EV_WRITE, write_cb, (void*)ec);
+    ev_read = event_new(base, m_pSocket, EV_READ, read_cb, (void*)ec);
 
     ec->event_write = ev_write;
     ec->event_read = ev_read;
@@ -130,10 +168,33 @@ void CStarLibeventNetwork::echo_client(struct event_base *base)
     ec->echo_contents = strdup("echo client tneilc ohce\n");
     ec->echo_contents_len = strlen(ec->echo_contents);
     ec->recved = 0;
-
-    event_add(ev_write, &tv); 
+    if (NULL == ev_write)
+    {
+        CCLOG("CStarLibeventNetwork::echo_client(ev_write == NULL)");
+    }
+    else
+    {
+#ifdef WIN32
+        //android 下执行这一句崩溃
+        event_add(ev_write, &tv);
 #endif
+    }
 
+    if (NULL == ev_read)
+    {
+        CCLOG("CStarLibeventNetwork::echo_client(ev_read == NULL)");
+    }
+    else
+    {
+#ifdef WIN32
+        //android 下执行这一句崩溃
+        event_add(ev_read, &tv);
+#endif
+    }
+
+    CCLOG("End CStarLibeventNetwork::echo_client(m_pSocket:%d)", m_pSocket);
+
+    return;
 }
 
 int CStarLibeventNetwork::sendData()

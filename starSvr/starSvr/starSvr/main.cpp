@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 #include "event2/event.h"
 #include "event2/util.h"
 #include "common.h"
+#include "starPB.h"
 
 #ifdef WIN32
 #include <WinSock2.h>
@@ -72,7 +75,16 @@ void on_read(evutil_socket_t sock, short eventRead, void *arg)
         closesocket(sock);
         return;
     }
-    printf("%s\n", ev->buf);
+
+    int nSizeBuf = strlen(ev->buf);
+    printf("%d\n", nSizeBuf);
+    LogonReqMessage logonReq;
+    logonReq.ParseFromArray(ev->buf, nSizeBuf);
+
+
+    printf("received message : %s\n", logonReq.passwd().c_str());
+
+
     char *p = "recv hello world!";
     send(sock, p, strlen(p), 0);
 }
