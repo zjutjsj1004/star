@@ -261,10 +261,12 @@ void CFortune::fortuneBottonBtnClick(Ref *pRef)
 	case STAR_FORTUNE_BOTTON_SHARE:
 	{
         /*²âÊÔÍøÂç·¢ËÍ*/
+#if 0
         char szBuf[1024] = { 0 };
         CCLOG(">>>>>>>>>>>>>>CStarNetwork::sendData in FortuneScene.cpp<<<<<<<<<<<<");
         sprintf(szBuf, "%s", "hello world");
         CStarNetwork::sendData(0, szBuf, sizeof(szBuf));
+#endif
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		shareButtonClick();
 		#endif

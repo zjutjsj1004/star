@@ -2,6 +2,14 @@
 #include "event2/event.h"
 #include "event2/util.h"
 
+#ifdef WIN32
+#else
+#include <netinet/tcp.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#endif
+
 #define ECHO_PORT   8888
 #define ECHO_SERVER "127.0.0.1"
 
@@ -50,10 +58,17 @@ void read_cb(evutil_socket_t sock, short flags, void * args)
 
 static evutil_socket_t make_tcp_socket()
 {
-    evutil_socket_t sock;
-#if 0
+#ifdef WIN32
+    int nIPPROTO = IPPROTO_TCP; /* #define IPPROTO_TCP 6  */
+#else
+    /* #define IPPROTO_TCP 6 ,非Win32平台下需要添加头文件：#include <netinet/tcp.h>
+    #include <sys/select.h>
+    #include <sys/socket.h>
+    #include <arpa/inet.h> */
+    int nIPPROTO = IPPROTO_TCP; 
+#endif
     int on = 1;
-    evutil_socket_t sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    evutil_socket_t sock = socket(AF_INET, SOCK_STREAM, nIPPROTO);
 
     evutil_make_socket_nonblocking(sock);
 #ifdef WIN32
@@ -61,14 +76,12 @@ static evutil_socket_t make_tcp_socket()
 #else
     setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, (void *)&on, sizeof(on));
 #endif
-#endif
 
     return sock;
 }
 
 static void echo_client(struct event_base *base)
 {
-#if 0
     evutil_socket_t sock = make_tcp_socket();
     struct sockaddr_in serverAddr;
     struct event * ev_write = 0;
@@ -97,9 +110,7 @@ static void echo_client(struct event_base *base)
     ec->echo_contents_len = strlen(ec->echo_contents);
     ec->recved = 0;
 
-    event_add(ev_write, &tv);
-#endif
-   
+    event_add(ev_write, &tv); 
 }
 
 int aaa()
