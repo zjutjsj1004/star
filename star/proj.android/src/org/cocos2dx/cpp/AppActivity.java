@@ -47,4 +47,7 @@ public class AppActivity extends Cocos2dxActivity
 	 	CCUMSocialController.onActivityResult(requestCode, resultCode, data);         
 	 	super.onActivityResult(requestCode, resultCode, data);
 	 }
+	 static {
+	      System.loadLibrary("eventcore");
+	 }
 }
