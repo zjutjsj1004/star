@@ -1,7 +1,7 @@
 
 #include "event2/event.h"
 #include "event2/util.h"
-
+#include "common.h"
 #ifdef WIN32
 #else
 #include <netinet/tcp.h>
@@ -102,7 +102,11 @@ static void echo_client(struct event_base *base)
 
     if (0 != connect(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr)))
     {
+#ifdef WIN32
         int nErr = WSAGetLastError();
+#else 
+        int nErr = ERROR_COMMMON_FAILED;
+#endif
         printf("connect err = %d", nErr);
         return;
     }

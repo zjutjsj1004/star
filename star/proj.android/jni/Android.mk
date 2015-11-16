@@ -47,7 +47,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
   $(LOCAL_PATH)/../../../common \
   $(LOCAL_PATH)/../../../common/protobuf \
   $(LOCAL_PATH)/../../../common/protobuf-lite \
-  $(LOCAL_PATH)/../../../common/protobuf-lite 
+  $(LOCAL_PATH)/../../../common/libevent/include
 
 
 # _COCOS_HEADER_ANDROID_BEGIN
