@@ -1,4 +1,6 @@
 #include "event2/event.h"
+#include "event2/util.h"
+#include "common.h"
 
 #ifdef WIN32
 #include <WinSock2.h>
@@ -12,7 +14,6 @@
 
 
 
-#define LINSTEN_PORT 12124
 #define LISTEN_MAX 5
 #define BUFFER_SIZE 1024
 struct event_base *base = NULL;
@@ -80,7 +81,7 @@ void on_read(evutil_socket_t sock, short eventRead, void *arg)
 void on_write(evutil_socket_t sock, short eventWrite, void *arg)
 {
     sock_ev *ev = (sock_ev*)arg;
-    printf("on_write\n");
+    //printf("on_write\n");
 }
 
 /* EV_READ */
@@ -110,7 +111,7 @@ int main()
     sockaddr_in srvAddr;
     srvAddr.sin_addr.s_addr = INADDR_ANY;
     srvAddr.sin_family = AF_INET;
-    srvAddr.sin_port = htons(LINSTEN_PORT);
+    srvAddr.sin_port = htons(STAR_NETWORK_ECHO_PORT);
 
 
     if (bind(sockListen, (sockaddr*)&srvAddr, sizeof(sockaddr)) != 0)

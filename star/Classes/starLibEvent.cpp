@@ -12,8 +12,7 @@
 
 #include "starLibEvent.h"
 
-#define ECHO_PORT   12124
-#define ECHO_SERVER "127.0.0.1"
+
 
 struct echo_context {
     struct event_base *base;
@@ -82,36 +81,45 @@ static evutil_socket_t make_tcp_socket()
     return sock;
 }
 
-static void echo_client(struct event_base *base)
+CStarLibeventNetwork* CStarLibeventNetwork::sm_pInstance = NULL;
+evutil_socket_t CStarLibeventNetwork::m_pSocket = 0;
+
+
+void CStarLibeventNetwork::echo_client(struct event_base *base)
 {
-    evutil_socket_t sock = make_tcp_socket();
-    struct sockaddr_in serverAddr;
-    struct event * ev_write = 0;
-    struct event * ev_read = 0;
-    struct timeval tv = { 10, 0 };
-    struct echo_context *ec = (struct echo_context*)calloc(1, sizeof(struct echo_context));
-
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(ECHO_PORT);
-#ifdef WIN32
-    serverAddr.sin_addr.S_un.S_addr = inet_addr(ECHO_SERVER);
-#else
-    serverAddr.sin_addr.s_addr = inet_addr(ECHO_SERVER);
-#endif
-    memset(serverAddr.sin_zero, 0x00, 8);
-
-    if (0 != connect(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr)))
+    if (m_pSocket <=0)
     {
+        m_pSocket = make_tcp_socket();
+        struct sockaddr_in serverAddr;
+        struct event * ev_write = 0;
+        struct event * ev_read = 0;
+        struct timeval tv = { 10, 0 };
+        struct echo_context *ec = (struct echo_context*)calloc(1, sizeof(struct echo_context));
+
+        serverAddr.sin_family = AF_INET;
+        serverAddr.sin_port = htons(STAR_NETWORK_ECHO_PORT);
 #ifdef WIN32
-        int nErr = WSAGetLastError();
-#else 
-        int nErr = ERROR_COMMMON_FAILED;
+        serverAddr.sin_addr.S_un.S_addr = inet_addr(STAR_NETWORK_ECHO_SERVER);
+#else
+        serverAddr.sin_addr.s_addr = inet_addr(STAR_NETWORK_ECHO_SERVER);
 #endif
-        printf("connect err = %d", nErr);
-        return;
+        memset(serverAddr.sin_zero, 0x00, 8);
+
+        if (0 != connect(m_pSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)))
+        {
+#ifdef WIN32
+            int nErr = WSAGetLastError();
+#else 
+            int nErr = ERROR_COMMMON_FAILED;
+#endif
+            printf("connect err = %d", nErr);
+            return;
+        }
     }
     
-    send(sock, "helloworld!", 11, 0);
+    
+
+    send(m_pSocket, "helloworld!", 11, 0);
 #if 0
     ev_write = event_new(base, sock, EV_WRITE, write_cb, (void*)ec);
     ev_read = event_new(base, sock, EV_READ, read_cb, (void*)ec);
@@ -127,10 +135,6 @@ static void echo_client(struct event_base *base)
 #endif
 
 }
-
-
-
-CStarLibeventNetwork* CStarLibeventNetwork::sm_pInstance = NULL;
 
 int CStarLibeventNetwork::sendData()
 {

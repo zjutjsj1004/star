@@ -21,6 +21,13 @@
 #define STAR_JSON_KEY_ABOUT_STAR 4
 #define STAR_JSON_KEY_ABOUT_AUTHOR 5
 
+#define STAR_NETWORK_ECHO_PORT 12124
+#ifdef WIN32
+#define STAR_NETWORK_ECHO_SERVER "127.0.0.1"
+#else
+#define STAR_NETWORK_ECHO_SERVER "192.168.199.135" //公司电脑无线IP地址，通过ipconfig /all获取
+#endif // WIN32
+
 
 const char gszFortuneName[STAR_FORTUNE_COUNT][STAR_COMMON_FINENAME_MAX_LEN] =
 {
