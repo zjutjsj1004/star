@@ -89,13 +89,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\libevent\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\lib;$(SolutionDir)..\..\common\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libsodium.lib;libzmq.lib;libprotobuf-lite.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\lib;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common\libevent\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libsodium.lib;libzmq.lib;libprotobuf-lite.lib;sqlite3.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(SolutionDir)..\..\common\network\dll\*.dll  $(TargetDir)
@@ -126,15 +126,15 @@ copy $(SolutionDir)..\..\common\sqlite\*.dll  $(TargetDir)</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\common\protobuf-lite;$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\include;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common;$(SolutionDir)..\..\common\libevent\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>false</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\lib;$(SolutionDir)..\..\common\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libsodium.lib;libzmq.lib;libprotobuf-lite.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\common\protobuf;$(SolutionDir)..\..\common\network\lib;$(SolutionDir)..\..\common\sqlite;$(SolutionDir)..\..\common\libevent\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libsodium.lib;libzmq.lib;libprotobuf-lite.lib;sqlite3.lib;libevent.lib;libevent_core.lib;libevent_extras.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(SolutionDir)..\..\common\network\dll\*.dll  $(TargetDir)
@@ -161,6 +161,7 @@ copy $(SolutionDir)..\..\common\sqlite\*.dll  $(TargetDir)</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\common\protobuf\starPB.cpp" />
+    <ClCompile Include="Source - 副本.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="sqlite_interface.cpp" />
   </ItemGroup>

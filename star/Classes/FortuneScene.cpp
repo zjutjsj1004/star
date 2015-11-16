@@ -16,6 +16,7 @@
 #include "StarRapidJson.h"
 #include "PopupLayer.h"
 #include "starNetwork.h"
+#include "starLibEvent.h"
 #define STAR_SHAREPIC_URL ("http://img1.imgtn.bdimg.com/it/u=4258453319,853384752&fm=15&gp=0.jpg")
 #define STAR_SHAREPIC_LOCALURL ("res/umeng_socialize_sharepic.png")
 #define STAR_SHARE_URL ("http://www.alonegames.com")
@@ -267,6 +268,8 @@ void CFortune::fortuneBottonBtnClick(Ref *pRef)
         sprintf(szBuf, "%s", "hello world");
         CStarNetwork::sendData(0, szBuf, sizeof(szBuf));
 #endif
+        CStarLibeventNetwork::GetInstance()->sendData();
+
 		#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 		shareButtonClick();
 		#endif

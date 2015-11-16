@@ -230,6 +230,9 @@
     <ClInclude Include="..\..\common\protobuf-lite\google\protobuf\stubs\type_traits.h">
       <Filter>src\common\protobuf-lite</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\starLibEvent.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

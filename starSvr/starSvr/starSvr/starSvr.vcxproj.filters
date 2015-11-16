@@ -36,6 +36,9 @@
     <ClCompile Include="..\..\..\common\protobuf\starPB.cpp">
       <Filter>protobuf</Filter>
     </ClCompile>
+    <ClCompile Include="Source - 副本.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\common\network\include\zmq.h">

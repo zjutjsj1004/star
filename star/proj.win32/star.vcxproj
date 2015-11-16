@@ -210,6 +210,7 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\FortuneSetScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\SelectStarScene.h" />
+    <ClInclude Include="..\Classes\starLibEvent.h" />
     <ClInclude Include="..\Classes\starNetwork.h" />
     <ClInclude Include="..\Classes\StartScene.h" />
     <ClInclude Include="main.h" />

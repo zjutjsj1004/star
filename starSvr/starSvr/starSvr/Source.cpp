@@ -5,7 +5,7 @@
 #include "starPB.h"
 #include "sqlite_interface.h"
 
-int main(int argc, char * argv[])
+int main1(int argc, char * argv[])
 {
     bool bInitSqliteDB = CSqliteInterface::GetInstance()->initSqliteDB();
     if (!bInitSqliteDB)

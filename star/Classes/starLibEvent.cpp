@@ -10,7 +10,9 @@
 #include <arpa/inet.h>
 #endif
 
-#define ECHO_PORT   8888
+#include "starLibEvent.h"
+
+#define ECHO_PORT   12124
 #define ECHO_SERVER "127.0.0.1"
 
 struct echo_context {
@@ -70,7 +72,7 @@ static evutil_socket_t make_tcp_socket()
     int on = 1;
     evutil_socket_t sock = socket(AF_INET, SOCK_STREAM, nIPPROTO);
 
-    evutil_make_socket_nonblocking(sock);
+    //evutil_make_socket_nonblocking(sock); /* 不注释就在connect时出现错误10035: 无法立即完成一个非阻止性套接字操作*/
 #ifdef WIN32
     setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, (const char *)&on, sizeof(on));
 #else
@@ -98,8 +100,15 @@ static void echo_client(struct event_base *base)
 #endif
     memset(serverAddr.sin_zero, 0x00, 8);
 
-    connect(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
-
+    if (0 != connect(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr)))
+    {
+        int nErr = WSAGetLastError();
+        printf("connect err = %d", nErr);
+        return;
+    }
+    
+    send(sock, "helloworld!", 11, 0);
+#if 0
     ev_write = event_new(base, sock, EV_WRITE, write_cb, (void*)ec);
     ev_read = event_new(base, sock, EV_READ, read_cb, (void*)ec);
 
@@ -111,9 +120,15 @@ static void echo_client(struct event_base *base)
     ec->recved = 0;
 
     event_add(ev_write, &tv); 
+#endif
+
 }
 
-int aaa()
+
+
+CStarLibeventNetwork* CStarLibeventNetwork::sm_pInstance = NULL;
+
+int CStarLibeventNetwork::sendData()
 {
     struct event_base * base = 0;
 #ifdef WIN32
@@ -127,8 +142,9 @@ int aaa()
 
     base = event_base_new();
     echo_client(base);
-    event_base_dispatch(base);
-    event_base_free(base);
+    //event_base_dispatch(base);
+    //event_base_free(base);
 
     return 0;
 }
+
