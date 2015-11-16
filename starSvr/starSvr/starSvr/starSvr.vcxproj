@@ -161,8 +161,8 @@ copy $(SolutionDir)..\..\common\sqlite\*.dll  $(TargetDir)</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\common\protobuf\starPB.cpp" />
-    <ClCompile Include="Source - 副本.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source-zeromq.cpp" />
     <ClCompile Include="sqlite_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
