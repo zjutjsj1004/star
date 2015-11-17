@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="0" Speed="1.0000" />
       <ObjectData Name="Scene" Tag="3" ctype="GameNodeObjectData">
-        <Size X="640.0000" Y="960.0000" />
+        <Size X="1280.0000" Y="1080.0000" />
         <Children>
           <AbstractNodeData Name="fortune_background_img_39" ActionTag="-406803213" Tag="43" IconVisible="False" LeftMargin="-2.8078" RightMargin="2.8078" TopMargin="-2.8074" BottomMargin="2.8074" ctype="SpriteObjectData">
             <Size X="640.0000" Y="960.0000" />
