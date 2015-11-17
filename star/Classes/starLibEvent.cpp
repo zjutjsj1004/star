@@ -33,9 +33,9 @@ void write_cb(evutil_socket_t sock, short flags, void * args)
 
     struct echo_context *ec = (struct echo_context *)args;
 
-    int ret = send(sock, ec->echo_contents, ec->echo_contents_len, 0);
-    CCLOG("connected, write to echo server: %d\n", ret);
-    event_add(ec->event_read, 0);
+    //int ret = send(sock, ec->echo_contents, ec->echo_contents_len, 0);
+    //CCLOG("connected, write to echo server: %d\n", ret);
+    event_add(ec->event_write, 0);
 }
 
 void read_cb(evutil_socket_t sock, short flags, void * args)
@@ -63,6 +63,8 @@ void read_cb(evutil_socket_t sock, short flags, void * args)
     {
         event_add(ec->event_read, 0);
     }
+
+    event_base_loopexit(ec->base, NULL);
 }
 
 static evutil_socket_t make_tcp_socket()
@@ -211,7 +213,7 @@ int CStarLibeventNetwork::sendData()
 
     base = event_base_new();
     echo_client(base);
-    //event_base_dispatch(base);
+    event_base_dispatch(base);
     //event_base_free(base);
 
     return 0;
