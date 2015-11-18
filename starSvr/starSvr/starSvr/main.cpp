@@ -147,6 +147,9 @@ int main()
 
     closesocket(sockListen);
     event_base_free(base);
+
+#ifdef WIN32
     WSACleanup();
+#endif
     return 0;
 }

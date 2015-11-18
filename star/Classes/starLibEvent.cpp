@@ -81,7 +81,7 @@ static evutil_socket_t make_tcp_socket()
     int on = 1;
     evutil_socket_t sock = socket(AF_INET, SOCK_STREAM, nIPPROTO);
 
-    //evutil_make_socket_nonblocking(sock); /* 不注释就在connect时出现错误10035: 无法立即完成一个非阻止性套接字操作*/
+    evutil_make_socket_nonblocking(sock); /* 不注释就在connect时出现错误10035: 无法立即完成一个非阻止性套接字操作*/
 #ifdef WIN32
     setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, (const char *)&on, sizeof(on));
 #else
@@ -114,11 +114,14 @@ void CStarLibeventNetwork::echo_client(struct event_base *base)
 
         if (0 != connect(m_pSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)))
         {
+#if 0
 #ifdef WIN32
             int nErr = WSAGetLastError();
 #else 
             int nErr = ERROR_COMMMON_FAILED;
 #endif
+#endif
+            int nErr = EVUTIL_SOCKET_ERROR(); /* 回本线程最后一次套接字操作的全局错误号， */
             CCLOG("connect err = %d", nErr);
             return;
         }
