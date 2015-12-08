@@ -30,12 +30,14 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 
 import com.umeng.social.CCUMSocialController;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 public class AppActivity extends Cocos2dxActivity 
 {
-
 	  protected void onCreate(Bundle savedInstanceState)
 	 {
 	 	 super.onCreate(savedInstanceState);
@@ -47,6 +49,11 @@ public class AppActivity extends Cocos2dxActivity
 	 	CCUMSocialController.onActivityResult(requestCode, resultCode, data);         
 	 	super.onActivityResult(requestCode, resultCode, data);
 	 }
+
+	  public static boolean isNetworkConnected() {
+        return false;
+    }
+
 	 static {
 	      System.loadLibrary("eventcore");
 	 }

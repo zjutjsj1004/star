@@ -3,6 +3,10 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "SelectStarScene.h"
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+#include <jni.h>
+#include "platform/android/jni/JniHelper.h"
+#endif
 
 USING_NS_CC;
 
@@ -54,4 +58,22 @@ void CStar::EnterSelectStarScene()
 		Director::getInstance()->replaceScene(pSelectStarScene);
 	}
 	CCLOG("CStar::EnterSelectStarScene");
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    jboolean r = false;
+    JniMethodInfo t;
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "isNetworkConnected", "()Z")) {
+        r = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+    }
+    if (r == false)
+    {
+        CCLOG("Android********************false");
+    }
+    else
+    {
+        CCLOG("Android********************true");
+    }
+#else
+    CCLOG("*************************");
+#endif
 }
