@@ -82,18 +82,10 @@ void CStar::EnterSelectStarScene()
     //http://stackoverflow.com/questions/9568095/how-to-make-a-proper-call-from-android-to-a-non-static-function-in-java-cocos2
     //http://blog.163.com/yg_qi/blog/static/9672173520141993728533/
     //http://www.cnblogs.com/luxiaofeng54/archive/2011/08/17/2142000.html
-    t.env = JniHelper::getEnv();
-    jclass clazz = t.env->FindClass("org/cocos2dx/cpp/AppActivity");
-    t.methodID = t.env->GetMethodID(clazz, "isNetworkConnected", "()Z");
-    r = t.env->CallBooleanMethod(t.classID, t.methodID);
-    if (r == false)
-    {
-        CCLOG("Android********************false");
-    }
-    else
-    {
-        CCLOG("Android********************true");
-    }
+    //http://blog.csdn.net/dj0379/article/details/18217323
+    //http://www.cocos.com/doc/tutorial/show?id=1308
+    bool ret = JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "isNetworkConnected", "()Z");
+
 #endif
  
     
