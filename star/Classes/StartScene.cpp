@@ -61,10 +61,31 @@ void CStar::EnterSelectStarScene()
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     jboolean r = false;
     JniMethodInfo t;
-    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "isNetworkConnected", "()Z")) {
+#if 0
+    //¾²Ì¬
+    if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "isNetworkConnected", "()Z"))
+    {
         r = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
+        if (r == false)
+        {
+            CCLOG("Android********************false");
+        }
+        else
+        {
+            CCLOG("Android********************true");
+        }
         t.env->DeleteLocalRef(t.classID);
     }
+#else
+    //·Ç¾²Ì¬
+    //http://stackoverflow.com/questions/18332343/jni-android-call-to-non-static-method-in-java-from-c
+    //http://stackoverflow.com/questions/9568095/how-to-make-a-proper-call-from-android-to-a-non-static-function-in-java-cocos2
+    //http://blog.163.com/yg_qi/blog/static/9672173520141993728533/
+    //http://www.cnblogs.com/luxiaofeng54/archive/2011/08/17/2142000.html
+    t.env = JniHelper::getEnv();
+    jclass clazz = t.env->FindClass("org/cocos2dx/cpp/AppActivity");
+    t.methodID = t.env->GetMethodID(clazz, "isNetworkConnected", "()Z");
+    r = t.env->CallBooleanMethod(t.classID, t.methodID);
     if (r == false)
     {
         CCLOG("Android********************false");
@@ -73,6 +94,13 @@ void CStar::EnterSelectStarScene()
     {
         CCLOG("Android********************true");
     }
+#endif
+ 
+    
+
+   
+
+
 #else
     CCLOG("*************************");
 #endif

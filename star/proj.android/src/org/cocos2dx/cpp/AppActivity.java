@@ -50,9 +50,21 @@ public class AppActivity extends Cocos2dxActivity
 	 	super.onActivityResult(requestCode, resultCode, data);
 	 }
 
-	  public static boolean isNetworkConnected() {
-        return false;
+	 
+	  public boolean isNetworkConnected() {
+		  boolean bIsNetworkConnected = false;
+		  final Context context = getApplicationContext();
+		  if(context == null)
+		  {
+			  return false;
+		  }
+		  ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+	        NetworkInfo ni = cm.getActiveNetworkInfo();
+	        return ni != null && ni.isConnectedOrConnecting();
     }
+	 /*public static boolean isNetworkConnected() {
+		  return true;
+   }*/
 
 	 static {
 	      System.loadLibrary("eventcore");
