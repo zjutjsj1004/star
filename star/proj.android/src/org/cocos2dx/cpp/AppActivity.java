@@ -38,8 +38,11 @@ import android.os.Bundle;
 
 public class AppActivity extends Cocos2dxActivity 
 {
+	public static AppActivity s_Instance;
 	  protected void onCreate(Bundle savedInstanceState)
 	 {
+		 s_Instance = this;
+		  
 	 	 super.onCreate(savedInstanceState);
 	 	 CCUMSocialController.initSocialSDK(this, "com.umeng.social.share");
 	 }	
@@ -51,7 +54,7 @@ public class AppActivity extends Cocos2dxActivity
 	 }
 
 	 
-	  public boolean isNetworkConnected() {
+	  /*public boolean isNetworkConnected() {
 		  boolean bIsNetworkConnected = false;
 		  final Context context = getApplicationContext();
 		  if(context == null)
@@ -61,10 +64,16 @@ public class AppActivity extends Cocos2dxActivity
 		  ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	        NetworkInfo ni = cm.getActiveNetworkInfo();
 	        return ni != null && ni.isConnectedOrConnecting();
-    }
-	 /*public static boolean isNetworkConnected() {
-		  return true;
-   }*/
+    }*/
+	 public static boolean isNetworkConnected() {
+			ConnectivityManager mConnectivityManager = (ConnectivityManager) s_Instance
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+			if (mNetworkInfo != null) {
+				return mNetworkInfo.isAvailable();
+			}
+			return false;
+   }
 
 	 static {
 	      System.loadLibrary("eventcore");

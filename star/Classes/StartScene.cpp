@@ -61,8 +61,8 @@ void CStar::EnterSelectStarScene()
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     jboolean r = false;
     JniMethodInfo t;
-#if 0
-    //¾²Ì¬
+#if 1
+    //¾²Ì¬£ºgetStaticMethodInfoÅÐ¶Ïjava¶¨ÒåµÄ¾²Ì¬º¯ÊýÊÇ·ñ´æÔÚ£¬·µ»Øbool
     if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/cpp/AppActivity", "isNetworkConnected", "()Z"))
     {
         r = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
