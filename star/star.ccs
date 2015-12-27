@@ -41,6 +41,9 @@
           <Project Name="FortuneSetScene.csd" Type="Scene" />
         </Folder>
         <Image Name="StartPage.png" />
+        <Folder Name="Toast">
+          <Image Name="toast_bg.png" />
+        </Folder>
       </RootFolder>
     </Group>
   </SolutionFolder>

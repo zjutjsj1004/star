@@ -17,6 +17,8 @@
 #include "PopupLayer.h"
 #include "starNetwork.h"
 #include "starLibEvent.h"
+#include "Jniutils.h"
+#include "Toast.h"
 #define STAR_SHAREPIC_URL ("http://img1.imgtn.bdimg.com/it/u=4258453319,853384752&fm=15&gp=0.jpg")
 #define STAR_SHAREPIC_LOCALURL ("res/umeng_socialize_sharepic.png")
 #define STAR_SHARE_URL ("http://www.alonegames.com")
@@ -426,6 +428,11 @@ void CFortune::readContentFullScene(Ref *pRef)
 
 void CFortune::getFortuneContentHttp()
 {
+    if (!JniUtils::JniUtils_isNetworkConnected())
+    {
+        Toast::show(ReadString::getInstance()->parse(STAR_JSON_KEY_CONNECTWORK_DISCONNECT).c_str(), 2.0f, this);
+        return;
+    }
 	HttpRequest* request = new HttpRequest();
 
 	char szUrl[256] = { 0 };

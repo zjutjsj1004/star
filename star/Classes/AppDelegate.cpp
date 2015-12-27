@@ -5,6 +5,9 @@
 
 USING_NS_CC;
 
+#define APP_DEFAULT_WIDTH (480)
+#define APP_DEFAULT_HEIGHT (640)
+
 AppDelegate::AppDelegate() {
 
 }

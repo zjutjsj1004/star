@@ -49,14 +49,17 @@ void release_sock_cv(sock_ev *ev)
     {
         if (0 != event_del(ev->read_ev))
         {
-            printf("del err\n");
+            printf("del read_ev err\n");
         }
         event_free(ev->read_ev);
         ev->read_ev = NULL;
     }
     if (ev->write_ev)
     {
-        event_del(ev->write_ev);
+        if (0 != event_del(ev->write_ev))
+        {
+            printf("del write_ev err\n");
+        }
         event_free(ev->write_ev);
         ev->write_ev = NULL;
     }
@@ -101,7 +104,7 @@ void on_accept(int sock, short eventAccept, void *arg)
 {
     struct sockaddr_in cliAddr;
     int nSize = sizeof(sockaddr_in);
-    SOCKET cliSock = accept(sock, (sockaddr*)&cliAddr, &nSize);
+    evutil_socket_t cliSock = accept(sock, (sockaddr*)&cliAddr, &nSize);
     sock_ev *ev = new sock_ev;
     struct event *eventRead = event_new(base, cliSock, EV_READ | EV_PERSIST, on_read, ev);
     struct event *eventWrite = event_new(base, cliSock, EV_WRITE | EV_PERSIST, on_write, ev);
@@ -119,7 +122,7 @@ int main()
     WSAStartup(MAKEWORD(2, 0), &wsaData);
 #endif
 
-    SOCKET sockListen = socket(AF_INET, SOCK_STREAM, 0);
+    evutil_socket_t sockListen = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr_in srvAddr;
     srvAddr.sin_addr.s_addr = INADDR_ANY;
     srvAddr.sin_family = AF_INET;

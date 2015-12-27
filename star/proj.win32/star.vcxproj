@@ -164,10 +164,13 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
     <ClCompile Include="..\Classes\FortuneScene.cpp" />
     <ClCompile Include="..\Classes\FortuneSetScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Jniutils.cpp" />
     <ClCompile Include="..\Classes\SelectStarScene.cpp" />
     <ClCompile Include="..\Classes\starLibEvent.cpp" />
     <ClCompile Include="..\Classes\starNetwork.cpp" />
     <ClCompile Include="..\Classes\StartScene.cpp" />
+    <ClCompile Include="..\Classes\Toast.cpp" />
+    <ClCompile Include="..\Classes\VisibleRect.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -209,10 +212,13 @@ xcopy /Y /Q "$(COCOS_FRAMEWORKS)\cocos2d-x-3.8.1\prebuilt\win32\*.*" "$(OutDir)"
     <ClInclude Include="..\Classes\FortuneScene.h" />
     <ClInclude Include="..\Classes\FortuneSetScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Jniutils.h" />
     <ClInclude Include="..\Classes\SelectStarScene.h" />
     <ClInclude Include="..\Classes\starLibEvent.h" />
     <ClInclude Include="..\Classes\starNetwork.h" />
     <ClInclude Include="..\Classes\StartScene.h" />
+    <ClInclude Include="..\Classes\Toast.h" />
+    <ClInclude Include="..\Classes\VisibleRect.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
