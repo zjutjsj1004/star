@@ -39,7 +39,7 @@ bool JniUtils::JniUtils_isNetworkConnected()
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 bool JniUtils::JniUtils_isNetworkConnected()
 {
-    return false;
+    return true;
 }
 #endif
 

@@ -183,6 +183,9 @@ bool CFortune::init(const int nFortuneType)
 		char szDayListBtnName[STAR_COMMON_FINENAME_MAX_LEN] = { 0 };
 		sprintf(szDayListBtnName, "Button_%d", i);
 		m_pFortuneDayBtnList[i] = (pFortuneDayLayout->getChildByName<Button*>(szDayListBtnName));
+        m_pFortuneDayBtnList[i]->setUserData((void*)i);
+        m_pFortuneDayBtnList[i]->addClickEventListener(CC_CALLBACK_1(CFortune::fortunTopItemClick, this));
+
 	}
 
 	//星座信息内容显示
@@ -298,6 +301,23 @@ void CFortune::fortuneBottonBtnClick(Ref *pRef)
 void CFortune::fortunTopItemClick(Ref *pRef)
 {
 	CCLOG("CFortune::fortunTopItemClick");
+    Button *pFortuneBtn = (Button*)pRef;
+    if (NULL == pFortuneBtn)
+    {
+        CCLOG("CFortune::fortunTopItemClick(NULL == pFortuneBtn)");
+        return;
+    }
+    int nFortuneButton = (int)pFortuneBtn->getUserData();
+    CCLOG("CFortune::fortuneBottonBtnClick(nFortuneButton = %d)", nFortuneButton);
+
+    if (NULL != m_pRoot)
+    {
+        PageView* pPageView = (m_pRoot->getChildByName<PageView*>("PageView_StarContent"));
+        pPageView->setCurPageIndex(nFortuneButton);
+        m_nFortuneDay = nFortuneButton;
+        setDayListBtnEnable(m_nFortuneDay);
+    }
+
 	return;
 }
 
